@@ -1,7 +1,7 @@
 <?
    /**
     * GCBot
-    * Version 0.2 of 19.09.2016
+    * Version 0.21 of 11.12.2016
     *
     * Сервер бота для Telegram
     * http://gusevcore.ru
@@ -14,8 +14,8 @@
    header('Content-type: text/html; charset=UTF-8');
 
    class GCBot {
-      public $version = '0.2';
-      public $versionDate = '19.09.2016';
+      public $version = '0.21';
+      public $versionDate = '11.12.2016';
 
       public $user = null;
 
@@ -156,7 +156,6 @@
        * @param user_id (Integer) - Идентификатор пользователя
        * @param text (String) - Текст сообщения
        */
-      public f
       public function sendVK($user_id, $text) {
          GLOBAL $Config;
 
