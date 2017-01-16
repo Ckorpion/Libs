@@ -1,6 +1,6 @@
 /**
  * GCDate - Компонент выбора даты
- * Version: 0.1 of 14.01.2017
+ * Version: 0.11 of 16.01.2017
  *
  * Для работы необходим GCF.js
  * http://gusevcore.ru
@@ -317,7 +317,7 @@ var GCDate = {
          .GCDate_active{display:block !important;}\
          .GCDate_field{cursor:pointer;padding:2px 5px 1px;}\
          .GCDate_field:after{content:"›";transform:rotate(90deg);display:inline-block;margin-left:5px;vertical-align:bottom;font-size:21px;line-height:21px;color:#999;}\
-         .GCDate_calendar{left:0px !important;height:205px;border-radius:5px;overflow:hidden !important;width:196px;background:#fff;border-width:1px !important;top:calc(100% + 10px);text-align:left;}\
+         .GCDate_calendar{left:0px !important;height:auto;border-radius:5px;overflow:hidden !important;width:196px;background:#fff;border-width:1px !important;top:calc(100% + 10px);text-align:left;}\
          .GCDate_calendar_months,.GCDate_calendar_daysBox{display:none;}\
          .GCDate_calendar_valueBox{background: #546E7A;color: #fff}\
          .GCDate_calendar_value{margin:0px 14px;text-align:center;padding:5px !important;width:100px;}\
@@ -328,6 +328,7 @@ var GCDate = {
          .GCDate_calendar_day,.GCDate_calendar_month{padding:3px 0px;border:solid 1px #fff;width:26px;}\
          .GCDate_item.GCDate_calendar_month{width:96px;}\
          .GCDate_calendar_day.GCDate_active{background:#ECEFF1;border-color:#CFD8DC;display:inline-block !important;}\
+         .GCDate_calendar_day:empty{opacity:0;cursor:auto;}\
       ';
 
       GCF.Q('head').appendChild(style);
@@ -422,6 +423,11 @@ var GCDate = {
 
       this.Q('.GCDate_calendar_months').removeClassName('GCDate_active');  // Спрячем месяцы
       daysBox.addClassName('GCDate_active');                               // Покажим дни
+
+      // Перенос недели
+      if (firstDay < 0) {
+        firstDay = 6;
+      }
 
       // Получим дни месяца
       for (var i = 1 - firstDay; i <= (32 - new Date(date.getFullYear(), date.getMonth(), 32).getDate()); i++) {
